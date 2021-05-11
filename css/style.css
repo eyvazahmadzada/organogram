@@ -1,0 +1,216 @@
+/* GLOBAL -------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-weight: 400;
+  font-style: normal;
+  position: relative;
+}
+
+body > .container {
+  padding-top: 50px;
+}
+
+.bg-green {
+  background-color: #87b87f;
+}
+
+.bg-blue {
+  background-color: #86bce2;
+}
+
+.bg-red {
+  background-color: #d15b47;
+}
+
+.bg-grayish, .container .box.root .boxContent input {
+  background-color: #f3f8f2;
+}
+
+.icon-add {
+  background-image: url("../icons/add.svg");
+}
+
+.icon-delete {
+  background-image: url("../icons/delete.svg");
+}
+
+.icon-edit {
+  background-image: url("../icons/edit.svg");
+}
+
+.icon {
+  display: inline-flex;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+
+.shadow, .container .box .boxContent input, .container .box .btn-wrapper button {
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.animate, .container .box .btn-wrapper, .container .box .btn-wrapper button {
+  transition: 0.4s all ease-out;
+}
+
+/* GLOBAL END ----------------------------------------- */
+/* SPECIAL -------------------------------------------- */
+.container {
+  cursor: move;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container .box {
+  cursor: default;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  margin: 0 auto 40px;
+  width: max-content;
+}
+
+.container .box:hover .btn-wrapper {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.container .box.root .boxContent::after {
+  display: none;
+}
+
+.container .box.root .btn-wrapper button:last-child {
+  display: none;
+}
+
+.container .box .boxContent input {
+  outline: none;
+  border: none;
+  position: relative;
+  margin: 0;
+  padding: 12px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  width: 120px;
+}
+
+.container .box .boxContent input:disabled {
+  user-select: none;
+}
+
+.container .box .boxContent input::placeholder {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.container .box .boxContent::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.container .box .boxContent::before {
+  top: 100%;
+}
+
+.container .box .btn-wrapper {
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+  position: absolute;
+  left: 100%;
+  margin-left: 8px;
+  display: inline-flex;
+}
+
+.container .box .btn-wrapper button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+
+.container .box .btn-wrapper button:hover {
+  filter: brightness(80%);
+}
+
+.container .box .btn-wrapper button:not(:last-child) {
+  margin-right: 6px;
+}
+
+.container .level-wrapper {
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .level-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.container .level-wrapper li::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.container .level-wrapper li:first-child::after, .container .level-wrapper li:last-child::after, .container .level-wrapper li:only-child::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  width: 1px;
+  height: 2px;
+  background-color: white;
+}
+
+.container .level-wrapper li:first-child::after {
+  right: calc(50% + 2px);
+}
+
+.container .level-wrapper li:last-child::after {
+  left: calc(50% + 2px);
+}
+
+.container .level-wrapper li:only-child::after {
+  left: auto;
+  right: auto;
+}
+
+/* SPECIAL END ---------------------------------------- */

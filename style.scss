@@ -1,0 +1,246 @@
+/* GLOBAL -------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-weight: 400;
+  font-style: normal;
+  position: relative;
+
+  // Root container
+  > .container {
+    padding-top: 50px;
+  }
+}
+
+// Generate background colors
+$bg-colors: (
+  green: #87b87f,
+  blue: #86bce2,
+  red: #d15b47,
+  grayish: #f3f8f2
+);
+
+@each $name, $color in $bg-colors {
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+// Generate icons
+$icons: add, delete, edit;
+
+@each $icon in $icons {
+  .icon-#{$icon} {
+    background-image: url("../icons/" + $icon + ".svg");
+  }
+}
+
+// Utility classes
+.icon {
+  display: inline-flex;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+.shadow {
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
+}
+.animate {
+  transition: 0.4s all ease-out;
+}
+
+/* GLOBAL END ----------------------------------------- */
+
+/* SPECIAL -------------------------------------------- */
+.container {
+  cursor: move;
+  width: 100%;
+  margin: 0 auto;
+
+  .box {
+    cursor: default;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    margin: 0 auto 40px;
+    width: max-content;
+
+    // Show buttons on box hover
+    &:hover .btn-wrapper {
+      opacity: 1;
+      visibility: visible;
+      z-index: 10;
+    }
+
+    &.root {
+      .boxContent {
+        input {
+          // Grayish background for root element
+          @extend .bg-grayish;
+        }
+
+        // No top vertical line for root
+        &::after {
+          display: none;
+        }
+      }
+
+      .btn-wrapper {
+        // No delete option for root
+        button:last-child {
+          display: none;
+        }
+      }
+    }
+
+    .boxContent {
+      input {
+        @extend .shadow;
+        outline: none;
+        border: none;
+        position: relative;
+        margin: 0;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 15px;
+        width: 120px;
+
+        &:disabled {
+          // Disable text select
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        &::placeholder {
+          font-weight: normal;
+          font-size: 12px;
+        }
+      }
+
+      // Vertical line
+      &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.25);
+      }
+
+      // Bottom line
+      &::before {
+        top: 100%;
+      }
+    }
+
+    .btn-wrapper {
+      @extend .animate;
+      opacity: 0;
+      visibility: hidden;
+      z-index: -1;
+      position: absolute;
+      left: 100%;
+      margin-left: 8px;
+      display: inline-flex;
+
+      button {
+        @extend .shadow;
+        @extend .animate;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+
+        &:hover {
+          filter: brightness(80%);
+        }
+
+        &:not(:last-child) {
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+
+  .level-wrapper {
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    // Horizontal line
+    &::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    li {
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: rgba(0, 0, 0, 0.25);
+        z-index: 1;
+      }
+
+      // Remove overflowing lines from first and last boxes
+      &:first-child::after,
+      &:last-child::after,
+      &:only-child::after {
+        content: "";
+        position: absolute;
+        top: -20px;
+        width: 1px;
+        height: 2px;
+        background-color: white;
+      }
+
+      &:first-child::after {
+        right: calc(50% + 2px);
+      }
+
+      &:last-child::after {
+        left: calc(50% + 2px);
+      }
+
+      // If there exists only one child
+      &:only-child::after {
+        left: auto;
+        right: auto;
+      }
+    }
+  }
+}
+
+/* SPECIAL END ---------------------------------------- */
