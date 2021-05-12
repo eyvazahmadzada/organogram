@@ -5,203 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Stylings -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/app.css" />
     <title>Organogram</title>
   </head>
   <body>
-    <div class="container">
-      <!-- element -->
-      <div class="root box">
-        <div class="boxContent">
-          <input
-            type="text"
-            value="Categories"
-            placeholder="Category Name"
-            disabled
-          />
+    <div data-el-clone="root" class="container root">
+      <!-- Root element -->
+      <div class="box">
+        <div class="box-content">
+          <input type="text" value="Categories" placeholder="Category Name" />
         </div>
 
         <!-- Action buttons -->
-        <div class="btn-wrapper">
-          <button class="bg-green">
-            <span class="icon icon-add"></span>
+        <div class="btn-modify btn-wrapper">
+          <button data-el-add="root" class="bg-green">
+            <span class="icon icon-plus"></span>
           </button>
-          <button class="bg-blue">
+          <button data-el-edit="root" class="bg-blue">
             <span class="icon icon-edit"></span>
           </button>
-          <button class="bg-red">
+          <button data-el-delete="root" class="bg-red">
             <span class="icon icon-delete"></span>
+          </button>
+        </div>
+
+        <!-- Confirmation buttons -->
+        <div class="btn-confirmation btn-wrapper d-none">
+          <button data-el-confirm="root" class="bg-green">
+            <span class="icon icon-confirm"></span>
+          </button>
+          <button data-el-close="root" class="bg-red">
+            <span class="icon icon-close"></span>
           </button>
         </div>
       </div>
 
-      <!-- Levels -->
-      <ul class="level-wrapper">
-        <div class="container">
-          <li class="box">
-            <div class="boxContent">
-              <input
-                type="text"
-                value="Categories"
-                placeholder="Category Name"
-                disabled
-              />
-            </div>
+      <!-- Levels container -->
+      <ul class="level-wrapper" data-el-container="root"></ul>
+    </div>
 
-            <!-- Action buttons -->
-            <div class="btn-wrapper">
-              <button class="bg-green">
-                <span class="icon icon-add"></span>
-              </button>
-              <button class="bg-blue">
-                <span class="icon icon-edit"></span>
-              </button>
-              <button class="bg-red">
-                <span class="icon icon-delete"></span>
-              </button>
-            </div>
-          </li>
-
-          <!-- Levels -->
-          <ul class="level-wrapper">
-            <div class="container">
-              <li class="box">
-                <div class="boxContent">
-                  <input
-                    type="text"
-                    value="Categories"
-                    placeholder="Category Name"
-                    disabled
-                  />
-                </div>
-
-                <!-- Action buttons -->
-                <div class="btn-wrapper">
-                  <button class="bg-green">
-                    <span class="icon icon-add"></span>
-                  </button>
-                  <button class="bg-blue">
-                    <span class="icon icon-edit"></span>
-                  </button>
-                  <button class="bg-red">
-                    <span class="icon icon-delete"></span>
-                  </button>
-                </div>
-              </li>
-            </div>
-
-            <div class="container">
-              <li class="box">
-                <div class="boxContent">
-                  <input
-                    type="text"
-                    value="Categories"
-                    placeholder="Category Name"
-                    disabled
-                  />
-                </div>
-
-                <!-- Action buttons -->
-                <div class="btn-wrapper">
-                  <button class="bg-green">
-                    <span class="icon icon-add"></span>
-                  </button>
-                  <button class="bg-blue">
-                    <span class="icon icon-edit"></span>
-                  </button>
-                  <button class="bg-red">
-                    <span class="icon icon-delete"></span>
-                  </button>
-                </div>
-              </li>
-            </div>
-          </ul>
-        </div>
-
-        <div class="container">
-          <li class="box">
-            <div class="boxContent">
-              <input
-                type="text"
-                value="Categories"
-                placeholder="Category Name"
-                disabled
-              />
-            </div>
-
-            <!-- Action buttons -->
-            <div class="btn-wrapper">
-              <button class="bg-green">
-                <span class="icon icon-add"></span>
-              </button>
-              <button class="bg-blue">
-                <span class="icon icon-edit"></span>
-              </button>
-              <button class="bg-red">
-                <span class="icon icon-delete"></span>
-              </button>
-            </div>
-          </li>
-
-          <!-- Levels -->
-          <ul class="level-wrapper">
-            <div class="container">
-              <li class="box">
-                <div class="boxContent">
-                  <input
-                    type="text"
-                    value="Categories"
-                    placeholder="Category Name"
-                    disabled
-                  />
-                </div>
-
-                <!-- Action buttons -->
-                <div class="btn-wrapper">
-                  <button class="bg-green">
-                    <span class="icon icon-add"></span>
-                  </button>
-                  <button class="bg-blue">
-                    <span class="icon icon-edit"></span>
-                  </button>
-                  <button class="bg-red">
-                    <span class="icon icon-delete"></span>
-                  </button>
-                </div>
-              </li>
-            </div>
-
-            <div class="container">
-              <li class="box">
-                <div class="boxContent">
-                  <input
-                    type="text"
-                    value="Categories"
-                    placeholder="Category Name"
-                    disabled
-                  />
-                </div>
-
-                <!-- Action buttons -->
-                <div class="btn-wrapper">
-                  <button class="bg-green">
-                    <span class="icon icon-add"></span>
-                  </button>
-                  <button class="bg-blue">
-                    <span class="icon icon-edit"></span>
-                  </button>
-                  <button class="bg-red">
-                    <span class="icon icon-delete"></span>
-                  </button>
-                </div>
-              </li>
-            </div>
-          </ul>
-        </div>
-      </ul>
+    <!-- Zoom-in and zoom-out buttons -->
+    <div class="btn-zoom btn-wrapper">
+      <button data-zoom-out="root">
+        <span class="icon icon-zoom-out"></span>
+      </button>
+      <h4 data-zoom-result="root">100%</h4>
+      <button data-zoom-in="root">
+        <span class="icon icon-zoom-in"></span>
+      </button>
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
